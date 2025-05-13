@@ -11,13 +11,16 @@
 
 (function() {
     'use strict';
-
+    function removeElements() {
+        const elements = document.querySelectorAll('.tr-stripe__main-row');
+        elements.forEach(el => el.remove());
+    }
     function addLogoButton() {
         if (document.getElementById('translateLogo')) return;
 
         const btn = document.createElement('img');
         btn.id = 'translateLogo';
-        btn.src = 'https://github.com/Monsler/MonoTranslate/blob/main/3253af41-d65b-4566-bc8d-d1be6338cd54_removalai_preview.png?raw=true';
+        btn.src = 'https://github.com/Monsler/MonoTranslate/blob/main/icon.png?raw=true';
         btn.alt = 'Перевести';
         btn.style.position = 'fixed';
         btn.style.bottom = '20px';
@@ -31,7 +34,12 @@
 
         // По клику — действие
         btn.addEventListener('click', () => {
-            alert('Button clicked!');
+            let currentURL = window.location.href.replace('https://', '');
+            let newURL = 'https://translated.turbopages.org/proxy_u/en-ru.ru/'+currentURL;
+            window.location.href = newURL
+            alert(newURL)
+            const elements = document.querySelectorAll('.tr-stripe__main-row');
+            elements.forEach(el => el.remove());
         });
 
         document.body.appendChild(btn);
@@ -39,10 +47,9 @@
 
     const observer = new MutationObserver(() => {
         addLogoButton();
+        removeElements();
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
-
-    // Первый запуск
     addLogoButton();
 })();
