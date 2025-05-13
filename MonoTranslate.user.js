@@ -5,7 +5,7 @@
 // @description  Быстрый перевод страниц
 // @author       Monsler
 // @match        *://*/*
-// @icon         https://github.com/Monsler/MonoTranslate/blob/main/3253af41-d65b-4566-bc8d-d1be6338cd54_removalai_preview(1).png?raw=true
+// @icon         https://github.com/Monsler/MonoTranslate/blob/main/ic.png?raw=true
 // @grant        none
 // ==/UserScript==
 
