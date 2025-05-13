@@ -7,7 +7,6 @@
 // @match        *://*/*
 // @icon         https://github.com/Monsler/MonoTranslate/blob/main/ic.png?raw=true
 // @grant        none
-// ==/UserScript==
 
 (function() {
     'use strict';
