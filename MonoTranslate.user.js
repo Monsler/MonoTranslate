@@ -5,7 +5,7 @@
 // @description  Быстрый перевод страниц
 // @author       Monsler
 // @match        *://*/*
-// @icon         https://github.com/Monsler/MonoTranslate/blob/main/ic.png?raw=true
+// @icon         https://github.com/Monsler/MonoTranslate/blob/main/3253af41-d65b-4566-bc8d-d1be6338cd54_removalai_preview(1).png?raw=true
 // @grant        none
 // ==/UserScript==
 
@@ -30,13 +30,11 @@
             btn.style.bottom = '20px';
             btn.style.right = '20px';
             btn.style.zIndex = '9999';
-            btn.style.width = '60px'; // Размер иконки (можно менять)
+            btn.style.width = '60px';
             btn.style.height = '60px';
             btn.style.cursor = 'pointer';
-            btn.style.borderRadius = '50%'; // Круглая кнопка
+            btn.style.borderRadius = '50%';
             btn.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
-
-            // По клику — действие
             btn.addEventListener('click', () => {
                 current = window.location.href;
                 let currentURL = current.replace('https://', '');
@@ -66,7 +64,7 @@
             translateBtn.style.position = 'absolute';
             translateBtn.style.zIndex = '9999';
             translateBtn.style.top = `${window.getSelection().getRangeAt(0).getBoundingClientRect().top + window.scrollY + 40}px`;
-            translateBtn.style.left = `${window.getSelection().getRangeAt(0).getBoundingClientRect().left + window.scrollX + 120}px`;
+            translateBtn.style.left = `${window.getSelection().getRangeAt(0).getBoundingClientRect().left + window.scrollX + 110}px`;
             translateBtn.style.padding = '10px 15px';
             translateBtn.style.fontSize = '14px';
             translateBtn.style.cursor = 'pointer';
@@ -87,12 +85,19 @@
         }
     }
 
-    // Обработчик события для выделения текста
     document.addEventListener('mouseup', () => {
         addTranslateSelectionButton();
     });
 
-    // Отслеживание изменений на странице
+    document.addEventListener('click', () => {
+        if (document.getSelection().toString().trim() === '') {
+            if (translateBtn) {
+                translateBtn.remove();
+                translateBtn = null;
+            }
+        }
+    });
+
     const observer = new MutationObserver(() => {
         addLogoButton();
         removeElements();
